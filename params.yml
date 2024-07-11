@@ -5,3 +5,5 @@ demo:
   wf_opts: '-profile test,singularity'
 fetchngs:
   wf_opts: '-profile test,singularity -r dev --nf_core_pipeline rnaseq'
+rnaseq:
+  wf_opts: '-profile test,singularity'
