@@ -12,7 +12,7 @@ Run nf-core/demo:
 nextflow run main.nf
 ```
 
-Run nf-core/fetchngs:
+Run nf-core/fetchngs + nf-core/rnaseq:
 ```bash
-nextflow run main.nf --general.demo false
+nextflow run main.nf -params-file params.yml
 ```
