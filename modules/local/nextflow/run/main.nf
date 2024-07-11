@@ -5,11 +5,11 @@ process NEXTFLOW_RUN {
     tag "$pipeline_name"
 
     input:
-    val pipeline_name         // String
-    val nextflow_opts         // String
-    path params_file          // pipeline params-file
-    path samplesheet          // pipeline samplesheet
-    path additional_config    // custom configs
+    val pipeline_name     // String
+    val nextflow_opts     // String
+    val params_file       // pipeline params-file
+    val samplesheet       // pipeline samplesheet
+    val additional_config // custom configs
 
     when:
     task.ext.when == null || task.ext.when
