@@ -7,8 +7,9 @@ process NEXTFLOW_RUN {
     input:
     val pipeline_name         // String
     val nextflow_opts         // String
-    path pipeline_inputs      // path to input file
-    path additional_configs   // custom configs
+    path params_file          // pipeline params-file
+    path samplesheet          // pipeline samplesheet
+    path additional_config    // custom configs
 
     when:
     task.ext.when == null || task.ext.when
@@ -17,14 +18,16 @@ process NEXTFLOW_RUN {
     // def args = task.ext.args ?: ''
     def cache_dir = Paths.get("nxf-workflowdir/$pipeline_name")
     Files.createDirectories(cache_dir)
-    def builder = new ProcessBuilder(
-        'nextflow', 'run',
+    def nxf_cmd = [
+        'nextflow run',
             pipeline_name,
-            *nextflow_opts.split(" "),
-            *(pipeline_inputs ? "-params-file $pipeline_inputs" : '').split(" "),
-            *(additional_configs ? "-c $additional_configs" : '').split(" "),
-            '--outdir', "$task.workDir/results"
-    )
+            nextflow_opts,
+            params_file ? "-params-file $params_file" : '',
+            additional_config ? "-c $additional_config" : '',
+            samplesheet ? "--input $samplesheet" : '',
+            "--outdir $task.workDir/results",
+    ]
+    def builder = new ProcessBuilder(nxf_cmd.join(" ").tokenize(" "))
     builder.directory(cache_dir.toFile())
     def process = builder.start()
     assert process.waitFor() == 0: process.text
