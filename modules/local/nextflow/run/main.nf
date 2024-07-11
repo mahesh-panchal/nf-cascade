@@ -22,6 +22,7 @@ process NEXTFLOW_RUN {
             pipeline_name,
             *nextflow_opts.split(" "),
             *(pipeline_inputs ? "-params-file $pipeline_inputs" : '').split(" "),
+            *(additional_configs ? "-c $additional_configs" : '').split(" "),
             '--outdir', "$task.workDir/results"
     )
     builder.directory(cache_dir.toFile())
