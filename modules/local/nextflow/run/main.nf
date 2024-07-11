@@ -6,7 +6,7 @@ process NEXTFLOW_RUN {
 
     input:
     val pipeline_name         // String
-    val nextflow_opts         // String[]
+    val nextflow_opts         // String
     path pipeline_inputs      // path to input file
     path additional_configs   // custom configs
 
@@ -20,9 +20,8 @@ process NEXTFLOW_RUN {
     def builder = new ProcessBuilder(
         'nextflow', 'run',
             pipeline_name,
-            '-profile', 'test,singularity',
-            '-ansi-log', 'false',
-            '-resume',
+            *nextflow_opts.split(" "),
+            *(pipeline_inputs ? "-params-file $pipeline_inputs" : '').split(" "),
             '--outdir', "$task.workDir/results"
     )
     builder.directory(cache_dir.toFile())
