@@ -1,0 +1,7 @@
+general:
+  demo: false
+  wf_opts: '-resume -ansi-log false'
+demo:
+  wf_opts: '-profile test,singularity'
+fetchngs:
+  wf_opts: '-profile test,singularity -r dev --nf_core_pipeline rnaseq'
