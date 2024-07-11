@@ -14,12 +14,12 @@ process NEXTFLOW_RUN {
     task.ext.when == null || task.ext.when
 
     exec:
-    def args = task.ext.args ?: ''
+    // def args = task.ext.args ?: ''
     def cache_dir = Paths.get("nxf-workflowdir/$pipeline_name")
     Files.createDirectories(cache_dir)
     def builder = new ProcessBuilder(
         'nextflow', 'run',
-            'nf-core/demo',
+            pipeline_name,
             '-profile', 'test,singularity',
             '-ansi-log', 'false',
             '-resume',
