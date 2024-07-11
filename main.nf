@@ -15,7 +15,7 @@ workflow {
             Channel.fromPath( params.demo.add_config, checkIfExists: true )
                 .set { demo_extra_config }
         }
-        NFCORE_DEMO(
+        NFCORE_DEMO (
             'nf-core/demo',       // pipeline name
             [ 
                 params.general.wf_opts?: '',
@@ -35,7 +35,7 @@ workflow {
             Channel.fromPath( params.fetchngs.add_config, checkIfExists: true )
                 .set { fetchngs_extra_config }
         }
-        NFCORE_FETCHNGS(
+        NFCORE_FETCHNGS (
             'nf-core/fetchngs',    // pipeline name
             [ 
                 params.general.wf_opts?: '',

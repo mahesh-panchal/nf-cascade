@@ -27,7 +27,7 @@ process NEXTFLOW_RUN {
     )
     builder.directory(cache_dir.toFile())
     def process = builder.start()
-    process.waitFor()
+    assert process.waitFor() == 0: process.text
     nflog = process.text
 
     output:
