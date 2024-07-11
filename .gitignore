@@ -1,0 +1,8 @@
+# Nextflow files
+.nextflow*
+work/
+results/
+nxf-*/
+
+# pixi environments
+.pixi
