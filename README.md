@@ -5,6 +5,10 @@ A proof of concept daisy-chaining Nextflow workflows.
 > [!WARNING]  
 > This is still in development.
 
+> [!TIP]
+> If you use code from here please acknowledge it by including a comment
+> in your code with the url to the code you've copied/adapted.
+
 ## Usage
 
 Run nf-core/demo:
