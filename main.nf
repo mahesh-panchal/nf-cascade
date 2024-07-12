@@ -20,10 +20,7 @@ workflow {
         // FETCHNGS
         NFCORE_FETCHNGS (
             'nf-core/fetchngs',
-            [ 
-                params.general.wf_opts?: '',
-                params.fetchngs.wf_opts?: '',
-            ].join(" ").trim(),                                                // workflow opts
+            "${params.general.wf_opts?: ''} ${params.fetchngs.wf_opts?: ''}",  // workflow opts
             readWithDefault( params.fetchngs.params_file, Channel.value([]) ), // input params file
             readWithDefault( params.fetchngs.input, Channel.value([]) ),       // samplesheet
             readWithDefault( params.fetchngs.add_config, Channel.value([]) ),  // custom config
@@ -33,10 +30,7 @@ workflow {
         // RNASEQ
         NFCORE_RNASEQ (
             'nf-core/rnaseq',
-            [ 
-                params.general.wf_opts?: '',
-                params.rnaseq.wf_opts?: '',
-            ].join(" ").trim(),                                                     // workflow opts
+            "${ params.general.wf_opts?: ''} ${params.rnaseq.wf_opts?: ''}",        // workflow opts
             readWithDefault( params.rnaseq.params_file, Channel.value([]) ),        // input params file
             readWithDefault( params.rnaseq.input, fetchngs_to_rnaseq_samplesheet ), // samplesheet
             readWithDefault( params.rnaseq.add_config, Channel.value([]) ),         // custom config
