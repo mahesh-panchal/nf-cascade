@@ -18,6 +18,11 @@ into a samplesheet. This means you would need to write your own process to handl
 this. This workflow already demonstrates one way of extracting specific files from
 a workflow output, that you can use as an input channel to the next process/workflow.
 
+> [!TIP]
+> If you're calling an nf-core workflow using this method, don't forget to use
+> `nf-core launch` to write the pipeline `params.yml` which can be passed to
+> `<workflow>.params_file`.
+
 ## Usage
 
 Run nf-core/demo:
