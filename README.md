@@ -18,6 +18,12 @@ Run nf-core/fetchngs + nf-core/rnaseq or nf-core/taxprofiler:
 nextflow run main.nf -params-file params.yml
 ```
 
+> [!NOTE]
+> Parameter files can be supplied for each workflow though the `<workflow>.params_file` config.
+> `<workflow>.input` can be set to supply a samplesheet, or override the samplesheet provided by
+> a previous workflow (`<workflow>.input` and previous workflow stages take precedence over 
+> samplesheets provided through `<workflow>.params_file`).
+
 > [!WARNING]
 > The test profiles of rnaseq and taxprofiler error using the test profile input from fetchngs.
 
