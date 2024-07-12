@@ -39,7 +39,7 @@ use different packaging platforms. One downside is that native processes also ex
 from the launch directory, rather than the work directory. After a bit of googling, I 
 discovered the `ProcessBuilder` class, which could run a command in another directory. Initially
 I thought about running this in the work directory (`task.workDir`), but realised any
-failures would start the whole integrated workflow from the beginning again in a new work directory. 
+failures would start the whole child nextflow workflow from the beginning again in a new work directory. 
 However, since we can write to any directory, I decided to make a separate folder in 
 the work directory in which the workflows could resume, writing only the results the task 
 specific directory (which is also handy for clean up). Native processes also don't stage 
