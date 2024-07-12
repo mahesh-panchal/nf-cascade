@@ -1,5 +1,5 @@
+run_nfcore_demo: false
 general:
-  demo: false
   wf_opts: '-resume -ansi-log false'
 demo:
   wf_opts: '-profile test,singularity'

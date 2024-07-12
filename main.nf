@@ -5,7 +5,7 @@ include { readWithDefault                      } from "$projectDir/functions/loc
 include { resolveFileFromDir as getSamplesheet } from "$projectDir/functions/local/utils"
 
 workflow {
-    if ( params.general.demo ) {
+    if ( params.run_nfcore_demo ) {
         NFCORE_DEMO (
             'nf-core/demo',
             [ 
