@@ -1,7 +1,8 @@
-include { NEXTFLOW_RUN as NFCORE_DEMO     } from "$projectDir/modules/local/nextflow/run/main"
-include { NEXTFLOW_RUN as NFCORE_FETCHNGS } from "$projectDir/modules/local/nextflow/run/main"
-include { NEXTFLOW_RUN as NFCORE_RNASEQ   } from "$projectDir/modules/local/nextflow/run/main"
-include { readWithDefault                 } from "$projectDir/functions/local/utils"
+include { NEXTFLOW_RUN as NFCORE_DEMO          } from "$projectDir/modules/local/nextflow/run/main"
+include { NEXTFLOW_RUN as NFCORE_FETCHNGS      } from "$projectDir/modules/local/nextflow/run/main"
+include { NEXTFLOW_RUN as NFCORE_RNASEQ        } from "$projectDir/modules/local/nextflow/run/main"
+include { readWithDefault                      } from "$projectDir/functions/local/utils"
+include { resolveFileFromDir as getSamplesheet } from "$projectDir/functions/local/utils"
 
 workflow {
     if ( params.general.demo ) {
@@ -27,9 +28,7 @@ workflow {
             readWithDefault( params.fetchngs.input, Channel.value([]) ),       // samplesheet
             readWithDefault( params.fetchngs.add_config, Channel.value([]) ),  // custom config
         )
-        NFCORE_FETCHNGS.out.output
-            .map{ results -> file(results.resolve('samplesheet/samplesheet.csv')) }
-            .set { fetchngs_to_rnaseq_samplesheet }
+        fetchngs_to_rnaseq_samplesheet = getSamplesheet( 'samplesheet/samplesheet.csv', NFCORE_FETCHNGS.out.output )
 
         // RNASEQ
         NFCORE_RNASEQ (
