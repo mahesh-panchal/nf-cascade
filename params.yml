@@ -6,7 +6,11 @@ demo:
   add_config: 'configs/multiqc.config'
 fetchngs:
   wf_opts: '-profile test,docker -r dev --nf_core_pipeline rnaseq'
+  # wf_opts: '-profile test,docker -r dev --nf_core_pipeline taxprofiler'
   add_config: 'configs/multiqc.config'
 rnaseq:
+  wf_opts: '-profile test,docker'
+  add_config: 'configs/multiqc.config'
+taxprofiler:
   wf_opts: '-profile test,docker'
   add_config: 'configs/multiqc.config'

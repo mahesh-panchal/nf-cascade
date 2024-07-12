@@ -1,6 +1,7 @@
 include { NEXTFLOW_RUN as NFCORE_DEMO          } from "$projectDir/modules/local/nextflow/run/main"
 include { NEXTFLOW_RUN as NFCORE_FETCHNGS      } from "$projectDir/modules/local/nextflow/run/main"
 include { NEXTFLOW_RUN as NFCORE_RNASEQ        } from "$projectDir/modules/local/nextflow/run/main"
+include { NEXTFLOW_RUN as NFCORE_TAXPROFILER   } from "$projectDir/modules/local/nextflow/run/main"
 include { readWithDefault                      } from "$projectDir/functions/local/utils"
 include { resolveFileFromDir as getSamplesheet } from "$projectDir/functions/local/utils"
 
@@ -8,6 +9,7 @@ workflow {
     def valid_chains = [
         'demo',
         'fetchngs,rnaseq',
+        'fetchngs,taxprofiler',
     ]
     assert params.workflows in valid_chains
     def wf_chain = params.workflows.tokenize(',')
@@ -43,6 +45,16 @@ workflow {
             readWithDefault( params.rnaseq.params_file, Channel.value([]) ),     // input params file
             readWithDefault( params.rnaseq.input, fetchngs_output_samplesheet ), // samplesheet
             readWithDefault( params.rnaseq.add_config, Channel.value([]) ),      // custom config
+        )
+    }
+    if ('taxprofiler' in wf_chain ){
+        // TAXPROFILER
+        NFCORE_TAXPROFILER (
+            'nf-core/taxprofiler',
+            "${ params.general.wf_opts?: ''} ${params.taxprofiler.wf_opts?: ''}",     // workflow opts
+            readWithDefault( params.taxprofiler.params_file, Channel.value([]) ),     // input params file
+            readWithDefault( params.taxprofiler.input, fetchngs_output_samplesheet ), // samplesheet
+            readWithDefault( params.taxprofiler.add_config, Channel.value([]) ),      // custom config
         )
     }
 }
