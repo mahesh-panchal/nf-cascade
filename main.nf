@@ -5,7 +5,14 @@ include { readWithDefault                      } from "$projectDir/functions/loc
 include { resolveFileFromDir as getSamplesheet } from "$projectDir/functions/local/utils"
 
 workflow {
-    if ( params.run_nfcore_demo ) {
+    def valid_chains = [
+        'demo',
+        'fetchngs,rnaseq',
+    ]
+    assert params.workflows in valid_chains
+    def wf_chain = params.workflows.tokenize(',')
+    
+    if ( 'demo' in wf_chain ) {
         NFCORE_DEMO (
             'nf-core/demo',
             [ 
@@ -16,7 +23,8 @@ workflow {
             readWithDefault( params.demo.input, Channel.value([]) ),       // samplesheet
             readWithDefault( params.demo.add_config, Channel.value([]) ),  // custom config
         )
-    } else {
+    }
+    if ( 'fetchngs' in wf_chain ){ 
         // FETCHNGS
         NFCORE_FETCHNGS (
             'nf-core/fetchngs',
@@ -26,7 +34,8 @@ workflow {
             readWithDefault( params.fetchngs.add_config, Channel.value([]) ),  // custom config
         )
         fetchngs_to_rnaseq_samplesheet = getSamplesheet( 'samplesheet/samplesheet.csv', NFCORE_FETCHNGS.out.output )
-
+    } 
+    if ('rnaseq' in wf_chain ){
         // RNASEQ
         NFCORE_RNASEQ (
             'nf-core/rnaseq',
@@ -34,6 +43,6 @@ workflow {
             readWithDefault( params.rnaseq.params_file, Channel.value([]) ),        // input params file
             readWithDefault( params.rnaseq.input, fetchngs_to_rnaseq_samplesheet ), // samplesheet
             readWithDefault( params.rnaseq.add_config, Channel.value([]) ),         // custom config
-        )        
+        )
     }
 }

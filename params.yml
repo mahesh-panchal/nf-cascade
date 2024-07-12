@@ -1,4 +1,4 @@
-run_nfcore_demo: false
+workflows: 'fetchngs,rnaseq'
 general:
   wf_opts: '-resume -ansi-log false'
 demo:
