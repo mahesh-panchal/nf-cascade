@@ -2,9 +2,6 @@
 
 A proof of concept daisy-chaining Nextflow workflows.
 
-> [!WARNING]  
-> This is still in development.
-
 > [!TIP]
 > If you use code from here please acknowledge it by including a comment
 > in your code with the url to the code you've copied/adapted.
@@ -16,10 +13,13 @@ Run nf-core/demo:
 nextflow run main.nf
 ```
 
-Run nf-core/fetchngs + nf-core/rnaseq:
+Run nf-core/fetchngs + nf-core/rnaseq or nf-core/taxprofiler:
 ```bash
 nextflow run main.nf -params-file params.yml
 ```
+
+> [!WARNING]
+> The test profiles of rnaseq and taxprofiler error using the test profile input from fetchngs.
 
 ## Description
 
