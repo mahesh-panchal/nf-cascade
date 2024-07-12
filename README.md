@@ -40,8 +40,9 @@ from the launch directory, rather than the work directory. After a bit of googli
 discovered the `ProcessBuilder` class, which could run a command in another directory. Initially
 I thought about running this in the work directory (`task.workDir`), but realised any
 failures would start the whole integrated workflow from the beginning again in a new work directory. 
-However, since we can write outside the work directory too, I decided to make a separate folder in 
-which the workflows could resume, writing only the results the working directory (which
-is also handy for clean up). Native processes also don't stage files, and so must be referred
-to using their uri strings (by using `val` instead of `path` on `Path` types). Resuming
-a workflow is then left to the child `nextflow` process.
+However, since we can write to any directory, I decided to make a separate folder in 
+the work directory in which the workflows could resume, writing only the results the task 
+specific directory (which is also handy for clean up). Native processes also don't stage 
+files, and so must be referred to using their uri strings (by using `val` instead of `path` 
+on `Path` types), which makes handling input files easier. Resuming a workflow is then left 
+to the child `nextflow` process.

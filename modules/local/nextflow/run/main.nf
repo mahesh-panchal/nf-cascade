@@ -16,7 +16,7 @@ process NEXTFLOW_RUN {
 
     exec:
     // def args = task.ext.args ?: ''
-    def cache_dir = Paths.get("nxf-workflowdir/$pipeline_name")
+    def cache_dir = Paths.get("$workflow.workDir/$pipeline_name")
     Files.createDirectories(cache_dir)
     def nxf_cmd = [
         'nextflow run',
