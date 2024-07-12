@@ -29,11 +29,10 @@ process NEXTFLOW_RUN {
     ]
     def builder = new ProcessBuilder(nxf_cmd.join(" ").tokenize(" "))
     builder.directory(cache_dir.toFile())
-    def process = builder.start()
+    process = builder.start()
     assert process.waitFor() == 0: process.text
-    nflog = process.text
 
     output:
-    path "results", emit: output
-    val nflog     , emit: log
+    path "results"  , emit: output
+    val process.text, emit: log
 }
