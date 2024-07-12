@@ -1,16 +1,18 @@
-workflows: 'fetchngs,rnaseq'
+# workflows: 'demo'
+# workflows: 'fetchngs,rnaseq'
+workflows: 'fetchngs,taxprofiler'
 general:
   wf_opts: '-resume -ansi-log false'
 demo:
-  wf_opts: '-profile test,docker'
+  wf_opts: '-profile docker,test'
   add_config: 'configs/multiqc.config'
 fetchngs:
-  wf_opts: '-profile test,docker -r dev --nf_core_pipeline rnaseq'
-  # wf_opts: '-profile test,docker -r dev --nf_core_pipeline taxprofiler'
+  # wf_opts: '-profile docker,test -r dev --nf_core_pipeline rnaseq'
+  wf_opts: '-profile docker,test -r dev --nf_core_pipeline taxprofiler'
   add_config: 'configs/multiqc.config'
 rnaseq:
-  wf_opts: '-profile test,docker'
+  wf_opts: '-profile docker,test'
   add_config: 'configs/multiqc.config'
 taxprofiler:
-  wf_opts: '-profile test,docker'
+  wf_opts: '-profile docker,test'
   add_config: 'configs/multiqc.config'
