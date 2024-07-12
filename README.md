@@ -2,9 +2,21 @@
 
 A proof of concept daisy-chaining Nextflow workflows.
 
+## Description
+
 > [!TIP]
 > If you use code from here please acknowledge it by including a comment
-> in your code with the url to the code you've copied/adapted.
+> in your code with the url to the code you've used/adapted.
+
+The aim of this repository is to demonstrate one method of integrating multiple
+nextflow workflows together in master workflow. You can then not only integrate existing
+workflows, but add on additional analyses. The approach taken here is to run 
+nextflow as a child process on the same node as the parent nextflow process.
+This is handled by the `NEXTFLOW_RUN` process. The hard part is connecting together
+the outputs and inputs. For example, you may need to turn a set of sequence files
+into a samplesheet. This means you would need to write your own process to handle
+this. This workflow already demonstrates one way of extracting specific files from
+a workflow output, that you can use as an input channel to the next process/workflow.
 
 ## Usage
 
@@ -27,7 +39,7 @@ nextflow run main.nf -params-file params.yml
 > [!WARNING]
 > The test profiles of rnaseq and taxprofiler error using the test profile input from fetchngs.
 
-## Description
+## Backstory
 
 Being able to chain workflows together has often been requested, in nf-core, and elsewhere. 
 One solution is to run the workflows separately. There have also been various attempts at 
