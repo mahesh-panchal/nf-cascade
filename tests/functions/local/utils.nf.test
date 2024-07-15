@@ -67,6 +67,25 @@ nextflow_function {
 
     }
 
+    // TODO: Update test with success
+    test("Test Function createMagSamplesheet - empty Dir") {
+
+        function "createMagSamplesheet"
+
+        when {
+            function {
+                """
+                input[0] = ''
+                """
+            }
+        }
+
+        then {
+            assert !function.success
+            assert snapshot(function.result).match()
+        }
+
+    }
 	
 
 }
