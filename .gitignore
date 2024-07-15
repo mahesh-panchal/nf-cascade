@@ -4,5 +4,9 @@ work/
 results/
 nxf-*/
 
+# nf-test
+.nf-test.log
+.nf-test/
+
 # pixi environments
 .pixi
