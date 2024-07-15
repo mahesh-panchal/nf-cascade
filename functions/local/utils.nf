@@ -9,7 +9,6 @@ def readWithDefault( String path, Object default_channel ) {
     path ? Channel.fromPath( path, checkIfExists: true ) : default_channel
 }
 
-// 
 /**
  * Returns a channel with the file defined by the path resolved against the directory.
  * 
@@ -19,4 +18,25 @@ def readWithDefault( String path, Object default_channel ) {
  */
 def resolveFileFromDir ( String path, Object dir ){
     dir.map{ results -> file( results.resolve( path ) ) }
+}
+
+/**
+ * Returns a channel with a samplesheet for nf-core/mag. 
+ * 
+ * @param dir   A channel with a directory. Fastq.gz files are assumed to be in a folder called fastq here.
+ * @return      A channel with a samplesheet or empty list
+ */
+def createMagSamplesheet ( Object dir ){
+    if ( dir ) {
+        dir.map { results -> 
+                files( results.resolve( 'fastq/*fastq.gz' ) )
+                    .collect {
+                        "${it.simpleName},0,${it},,"
+                    }
+            }
+            .flatMap { [ "sample,group,short_reads_1,short_reads_2,long_reads" ] + it }
+            .collectFile( name: 'mag_samplesheet.csv', newLine: true, sort: false )
+    } else {
+        Channel.value([])
+    }
 }
