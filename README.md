@@ -41,7 +41,7 @@ Run nf-core/demo:
 nextflow run main.nf
 ```
 
-Run nf-core/fetchngs + nf-core/rnaseq or nf-core/taxprofiler:
+Run nf-core/fetchngs -> ( nf-core/taxprofiler, nf-core/mag -> nf-core/funcscan ):
 ```bash
 nextflow run main.nf -params-file params.yml
 ```
@@ -52,8 +52,17 @@ nextflow run main.nf -params-file params.yml
 > a previous workflow (`<workflow>.input` and previous workflow stages take precedence over 
 > samplesheets provided through `<workflow>.params_file`).
 
-> [!WARNING]
-> The test profiles of rnaseq and taxprofiler error using the test profile input from fetchngs.
+## Pros and cons
+
+Pros:
+
+- Easy-ish to implement ( copy module, link with channels ).
+- No messing with code of pipeline you're trying to integrate.
+
+Cons:
+
+- If a pipeline fails, you need to wait for any concurrent pipelines to finish.
+- Less control over modules and channels integrated. It's the whole pipeline included ( you maybe able to configure running portions ).
 
 ## Backstory
 
