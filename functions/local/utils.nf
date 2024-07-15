@@ -29,12 +29,33 @@ def resolveFileFromDir ( String path, Object dir ){
 def createMagSamplesheet ( Object dir ){
     if ( dir ) {
         dir.map { results -> 
-                files( results.resolve( 'fastq/*fastq.gz' ) )
+                files( results.resolve( 'fastq/*fastq.gz' ), checkIfExists: true )
                     .collect {
                         "${it.simpleName},0,${it},,"
                     }
             }
             .flatMap { [ "sample,group,short_reads_1,short_reads_2,long_reads" ] + it }
+            .collectFile( name: 'mag_samplesheet.csv', newLine: true, sort: false )
+    } else {
+        Channel.value([])
+    }
+}
+
+/**
+ * Returns a channel with a samplesheet for nf-core/funcscan. 
+ * 
+ * @param dir   A channel with a directory. Fa.gz files are assumed to be in a folder called assembly/<assembler>/ here.
+ * @return      A channel with a samplesheet or empty list
+ */
+def createFuncscanSamplesheet ( Object dir ){
+    if ( dir ) {
+        dir.map { results -> 
+                files( results.resolve( 'Assembly/*/*fastq.gz' ), checkIfExists: true )
+                    .collect {
+                        "${it.simpleName},${it}"
+                    }
+            }
+            .flatMap { [ "sample,fasta" ] + it }
             .collectFile( name: 'mag_samplesheet.csv', newLine: true, sort: false )
     } else {
         Channel.value([])

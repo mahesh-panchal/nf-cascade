@@ -1,6 +1,6 @@
 # workflows: 'demo'
 # workflows: 'fetchngs,rnaseq'
-workflows: 'fetchngs,taxprofiler,mag'
+workflows: 'fetchngs,taxprofiler,mag,funcscan'
 general:
   wf_opts: '-resume -ansi-log false'
 demo:
@@ -20,5 +20,8 @@ taxprofiler:
   add_config: 'configs/multiqc.config'
 mag:
   params_file: 'tests/data/mag_params.yml'
+  wf_opts: '-profile docker,test'
+  add_config: 'configs/multiqc.config'
+funcscan:
   wf_opts: '-profile docker,test'
   add_config: 'configs/multiqc.config'

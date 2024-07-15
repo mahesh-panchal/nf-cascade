@@ -10,7 +10,7 @@ graph TD
     fetchngs[[nf-core fetchngs]] --> rnaseq[[nf-core rnaseq]]
     fetchngs --> taxprofiler[[nf-core taxprofiler]]
     fetchngs --> mag[[nf-core mag]]
-    funcscan[[nf-core funcscan]]
+    mag --> funcscan[[nf-core funcscan]]
 ```
 
 > [!TIP]

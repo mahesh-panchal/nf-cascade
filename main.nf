@@ -7,14 +7,20 @@ include { NEXTFLOW_RUN as NFCORE_FUNCSCAN      } from "$projectDir/modules/local
 include { readWithDefault                      } from "$projectDir/functions/local/utils"
 include { resolveFileFromDir as getSamplesheet } from "$projectDir/functions/local/utils"
 include { createMagSamplesheet                 } from "$projectDir/functions/local/utils"
+include { createFuncscanSamplesheet            } from "$projectDir/functions/local/utils"
 
 workflow {
     def valid_chains = [
         'demo',
+        'fetchngs',
         'fetchngs,rnaseq',
         'fetchngs,taxprofiler',
-        'fetchngs,taxprofiler,mag', // aim: fetchngs,taxprofiler,mag,funcscan
-        'fetchngs,mag',
+        'fetchngs,taxprofiler,mag',
+        'fetchngs,taxprofiler,mag,funcscan',
+        'fetchngs,mag,funcscan',
+        'rnaseq',
+        'taxprofiler',
+        'mag',
         'funcscan',
     ]
     assert params.workflows in valid_chains
@@ -43,7 +49,6 @@ workflow {
         )
         fetchngs_output_samplesheet = getSamplesheet( 'samplesheet/samplesheet.csv', NFCORE_FETCHNGS.out.output )
         fetchngs_output             = NFCORE_FETCHNGS.out.output
-            //.output.map{ dir -> dir.resolve('fastq/*fastq.gz'))
     } 
     if ('rnaseq' in wf_chain ){
         // RNASEQ
@@ -74,15 +79,16 @@ workflow {
             readWithDefault( params.mag.input, createMagSamplesheet(fetchngs_output) ), // input
             readWithDefault( params.mag.add_config, Channel.value([]) ),                // custom config
         )
+        mag_output             = NFCORE_MAG.out.output
     }
     if ('funcscan' in wf_chain ){
         // FUNCSCAN
         NFCORE_FUNCSCAN (
             'nf-core/funcscan',
-            "${ params.general.wf_opts?: ''} ${params.funcscan.wf_opts?: ''}",     // workflow opts
-            readWithDefault( params.funcscan.params_file, Channel.value([]) ),     // params file
-            readWithDefault( params.funcscan.input, Channel.value([]) ),           // samplesheet
-            readWithDefault( params.funcscan.add_config, Channel.value([]) ),      // custom config
+            "${ params.general.wf_opts?: ''} ${params.funcscan.wf_opts?: ''}",               // workflow opts
+            readWithDefault( params.funcscan.params_file, Channel.value([]) ),               // params file
+            readWithDefault( params.funcscan.input, createFuncscanSamplesheet(mag_output) ), // samplesheet
+            readWithDefault( params.funcscan.add_config, Channel.value([]) ),                // custom config
         )
     }
 }
