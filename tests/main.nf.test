@@ -3,7 +3,7 @@ nextflow_pipeline {
     name "Test Workflow main.nf"
     script "main.nf"
 
-    test("nf-cascade test using nf-core demo") {
+    test("nf-cascade: nf-core demo -profile docker,test") {
 
         when {
             params {

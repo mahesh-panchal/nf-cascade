@@ -1,0 +1,147 @@
+{
+    "Nextflow run nf-core/demo - singularity,test": {
+        "content": [
+            {
+                "0": [
+                    [
+                        [
+                            [
+                                "SAMPLE1_PE_1_fastqc.html:md5,f6b9faf88a258fc71026d54063eec464",
+                                "SAMPLE1_PE_2_fastqc.html:md5,305f3c098ff2c5ce5be4129b5b0a4941"
+                            ],
+                            [
+                                "SAMPLE2_PE_1_fastqc.html:md5,e1c42d700367f4941978ab37e07edb07",
+                                "SAMPLE2_PE_2_fastqc.html:md5,3c2c9eb34cda193664da6ae02a6d3597"
+                            ],
+                            [
+                                "SAMPLE3_SE_1_fastqc.html:md5,b9b10450173c55042c2b82472f2be066",
+                                "SAMPLE3_SE_2_fastqc.html:md5,7173195f7b055347c9837a4e1c96b87b"
+                            ]
+                        ],
+                        [
+                            [
+                                "SAMPLE1_PE_sample1_R1.fastq.gz:md5,7dd2fd0d542d9259d9aed53550907fae",
+                                "SAMPLE1_PE_sample1_R2.fastq.gz:md5,1995fe8488384d801807805f26ceca8a"
+                            ],
+                            [
+                                "SAMPLE2_PE_sample2_R1.fastq.gz:md5,05dba9c26396cbdbe0e6da26f037106e",
+                                "SAMPLE2_PE_sample2_R2.fastq.gz:md5,63d5e4ac37927c2ecec4b74d2ff99a10"
+                            ],
+                            [
+                                "SAMPLE3_SE_sample1_R1.fastq.gz:md5,7dd2fd0d542d9259d9aed53550907fae",
+                                "SAMPLE3_SE_sample2_R1.fastq.gz:md5,05dba9c26396cbdbe0e6da26f037106e"
+                            ]
+                        ],
+                        [
+                            [
+                                "fastqc-status-check-heatmap.txt:md5,0f1975c565a16bf09be08a05c204ded7",
+                                "fastqc_overrepresented_sequences_plot.txt:md5,4017241584a8c0782d1988675f3b2249",
+                                "fastqc_per_base_n_content_plot.txt:md5,77c2a38e3662e15a5c143bf5699908ea",
+                                "fastqc_per_base_sequence_quality_plot.txt:md5,6e0365adca6e3555de5e5d66732c4557",
+                                "fastqc_per_sequence_gc_content_plot_Counts.txt:md5,7108d19c46ef7883e864ba274c457d2e",
+                                "fastqc_per_sequence_gc_content_plot_Percentages.txt:md5,bf55e7ab22f41fb210f5feb267ea7e1c",
+                                "fastqc_per_sequence_quality_scores_plot.txt:md5,a0cc0e6df7bfb05257da1cfc88b13c50",
+                                "fastqc_sequence_counts_plot.txt:md5,b73e64278bc07496ddee819e0b5b66e6",
+                                "fastqc_sequence_duplication_levels_plot.txt:md5,3cde2db4033f6c64648976d1174db925",
+                                "fastqc_sequence_length_distribution_plot.txt:md5,7413a9ec5bbc49b9156f0049b32eedc4",
+                                "fastqc_top_overrepresented_sequences_table.txt:md5,dc4d3cdbf0816c0e0a4206f3c6dead2c",
+                                "multiqc.log:md5,011b2534e09c32b7031b12ae8ae6821d",
+                                "multiqc_citations.txt:md5,4c806e63a283ec1b7e78cdae3a923d4f",
+                                "multiqc_data.json:md5,d732f604fa3db34aa8aaa4312fde508b",
+                                "multiqc_general_stats.txt:md5,2dc91cf28c24bc2a3fb82d598b9afe2a",
+                                "multiqc_sources.txt:md5,908387b01d342585429057cdf55458c9"
+                            ],
+                            [
+                                
+                            ],
+                            "multiqc_report.html:md5,7323d69688a4c56db7a6a84d3e79e2ee"
+                        ],
+                        [
+                            "execution_report_2024-07-15_09-31-39.html:md5,d797181483602783a00b208e053a8610",
+                            "execution_timeline_2024-07-15_09-31-39.html:md5,70734c0d132adfb0970d1d737acddd6f",
+                            "execution_trace_2024-07-15_09-31-39.txt:md5,e0ad376ef2631946b7875dd3af46f06d",
+                            "nf_core_pipeline_software_mqc_versions.yml:md5,8cc458504668837d4466232254d951a0",
+                            "params_2024-07-15_09-31-45.json:md5,e98fed0d9c0323ed8dfbb27bed91500d",
+                            "pipeline_dag_2024-07-15_09-31-39.html:md5,b6a1390f448d684834b1157f7fc38e2d"
+                        ]
+                    ]
+                ],
+                "1": [
+                    "N E X T F L O W  ~  version 24.04.3\nLaunching `https://github.com/nf-core/demo` [jolly_kay] DSL2 - revision: 705f18e4b1 [master]\nWARN: Access to undefined parameter `monochromeLogs` -- Initialise it to a default value eg. `params.monochromeLogs = some_value`\n\n\n-\u001b[2m----------------------------------------------------\u001b[0m-\n                                        \u001b[0;32m,--.\u001b[0;30m/\u001b[0;32m,-.\u001b[0m\n\u001b[0;34m        ___     __   __   __   ___     \u001b[0;32m/,-._.--~'\u001b[0m\n\u001b[0;34m  |\\ | |__  __ /  ` /  \\ |__) |__         \u001b[0;33m}  {\u001b[0m\n\u001b[0;34m  | \\| |       \\__, \\__/ |  \\ |___     \u001b[0;32m\\`-._,-`-,\u001b[0m\n                                        \u001b[0;32m`._,._,'\u001b[0m\n\u001b[0;35m  nf-core/demo v1.0.0-g705f18e\u001b[0m\n-\u001b[2m----------------------------------------------------\u001b[0m-\n\u001b[1mCore Nextflow options\u001b[0m\n  \u001b[0;34mrevision                  : \u001b[0;32mmaster\u001b[0m\n  \u001b[0;34mrunName                   : \u001b[0;32mjolly_kay\u001b[0m\n  \u001b[0;34mcontainerEngine           : \u001b[0;32mdocker\u001b[0m\n  \u001b[0;34mcontainer                 : \u001b[0;32m[MULTIQC:community.wave.seqera.io/library/multiqc:1.22.1--4886de6095538010]\u001b[0m\n  \u001b[0;34mlaunchDir                 : \u001b[0;32m/workspace/nf-cascade/.nf-test/tests/4440aca41cfaa33c40220e5ddabaeaf5/work/nf-core/demo\u001b[0m\n  \u001b[0;34mworkDir                   : \u001b[0;32m/workspace/nf-cascade/.nf-test/tests/4440aca41cfaa33c40220e5ddabaeaf5/work/nf-core/demo/work\u001b[0m\n  \u001b[0;34mprojectDir                : \u001b[0;32m/home/gitpod/.nextflow/assets/nf-core/demo\u001b[0m\n  \u001b[0;34muserName                  : \u001b[0;32mgitpod\u001b[0m\n  \u001b[0;34mprofile                   : \u001b[0;32mdocker,test\u001b[0m\n  \u001b[0;34mconfigFiles               : \u001b[0;32m\u001b[0m\n\n\u001b[1mInput/output options\u001b[0m\n  \u001b[0;34minput                     : \u001b[0;32mhttps://raw.githubusercontent.com/nf-core/test-datasets/viralrecon/samplesheet/samplesheet_test_illumina_amplicon.csv\u001b[0m\n  \u001b[0;34moutdir                    : \u001b[0;32m/workspace/nf-cascade/.nf-test/tests/4440aca41cfaa33c40220e5ddabaeaf5/work/35/c6e9ea3bfe0dd7b09e57d1525e87c1/results\u001b[0m\n\n\u001b[1mInstitutional config options\u001b[0m\n  \u001b[0;34mconfig_profile_name       : \u001b[0;32mTest profile\u001b[0m\n  \u001b[0;34mconfig_profile_description: \u001b[0;32mMinimal test dataset to check pipeline function\u001b[0m\n\n\u001b[1mMax job request options\u001b[0m\n  \u001b[0;34mmax_cpus                  : \u001b[0;32m2\u001b[0m\n  \u001b[0;34mmax_memory                : \u001b[0;32m6.GB\u001b[0m\n  \u001b[0;34mmax_time                  : \u001b[0;32m6.h\u001b[0m\n\n!! Only displaying parameters that differ from the pipeline defaults !!\n-\u001b[2m----------------------------------------------------\u001b[0m-\nIf you use nf-core/demo for your analysis please cite:\n\n* The pipeline\n\n* The nf-core framework\n  https://doi.org/10.1038/s41587-020-0439-x\n\n* Software dependencies\n  https://github.com/nf-core/demo/blob/master/CITATIONS.md\n-\u001b[2m----------------------------------------------------\u001b[0m-\n[1b/808a7b] Submitted process > NFCORE_DEMO:DEMO:SEQTK_TRIM (SAMPLE3_SE)\n[1b/beb379] Submitted process > NFCORE_DEMO:DEMO:FASTQC (SAMPLE3_SE)\n[e0/4f8dcc] Submitted process > NFCORE_DEMO:DEMO:SEQTK_TRIM (SAMPLE2_PE)\n[ab/f831e1] Submitted process > NFCORE_DEMO:DEMO:FASTQC (SAMPLE2_PE)\n[7a/659ed4] Submitted process > NFCORE_DEMO:DEMO:SEQTK_TRIM (SAMPLE1_PE)\n[8e/714f77] Submitted process > NFCORE_DEMO:DEMO:FASTQC (SAMPLE1_PE)\n[b8/4dd6d6] Submitted process > NFCORE_DEMO:DEMO:MULTIQC\n-\u001b[0;35m[nf-core/demo]\u001b[0;32m Pipeline completed successfully\u001b[0m-\n"
+                ],
+                "log": [
+                    "N E X T F L O W  ~  version 24.04.3\nLaunching `https://github.com/nf-core/demo` [jolly_kay] DSL2 - revision: 705f18e4b1 [master]\nWARN: Access to undefined parameter `monochromeLogs` -- Initialise it to a default value eg. `params.monochromeLogs = some_value`\n\n\n-\u001b[2m----------------------------------------------------\u001b[0m-\n                                        \u001b[0;32m,--.\u001b[0;30m/\u001b[0;32m,-.\u001b[0m\n\u001b[0;34m        ___     __   __   __   ___     \u001b[0;32m/,-._.--~'\u001b[0m\n\u001b[0;34m  |\\ | |__  __ /  ` /  \\ |__) |__         \u001b[0;33m}  {\u001b[0m\n\u001b[0;34m  | \\| |       \\__, \\__/ |  \\ |___     \u001b[0;32m\\`-._,-`-,\u001b[0m\n                                        \u001b[0;32m`._,._,'\u001b[0m\n\u001b[0;35m  nf-core/demo v1.0.0-g705f18e\u001b[0m\n-\u001b[2m----------------------------------------------------\u001b[0m-\n\u001b[1mCore Nextflow options\u001b[0m\n  \u001b[0;34mrevision                  : \u001b[0;32mmaster\u001b[0m\n  \u001b[0;34mrunName                   : \u001b[0;32mjolly_kay\u001b[0m\n  \u001b[0;34mcontainerEngine           : \u001b[0;32mdocker\u001b[0m\n  \u001b[0;34mcontainer                 : \u001b[0;32m[MULTIQC:community.wave.seqera.io/library/multiqc:1.22.1--4886de6095538010]\u001b[0m\n  \u001b[0;34mlaunchDir                 : \u001b[0;32m/workspace/nf-cascade/.nf-test/tests/4440aca41cfaa33c40220e5ddabaeaf5/work/nf-core/demo\u001b[0m\n  \u001b[0;34mworkDir                   : \u001b[0;32m/workspace/nf-cascade/.nf-test/tests/4440aca41cfaa33c40220e5ddabaeaf5/work/nf-core/demo/work\u001b[0m\n  \u001b[0;34mprojectDir                : \u001b[0;32m/home/gitpod/.nextflow/assets/nf-core/demo\u001b[0m\n  \u001b[0;34muserName                  : \u001b[0;32mgitpod\u001b[0m\n  \u001b[0;34mprofile                   : \u001b[0;32mdocker,test\u001b[0m\n  \u001b[0;34mconfigFiles               : \u001b[0;32m\u001b[0m\n\n\u001b[1mInput/output options\u001b[0m\n  \u001b[0;34minput                     : \u001b[0;32mhttps://raw.githubusercontent.com/nf-core/test-datasets/viralrecon/samplesheet/samplesheet_test_illumina_amplicon.csv\u001b[0m\n  \u001b[0;34moutdir                    : \u001b[0;32m/workspace/nf-cascade/.nf-test/tests/4440aca41cfaa33c40220e5ddabaeaf5/work/35/c6e9ea3bfe0dd7b09e57d1525e87c1/results\u001b[0m\n\n\u001b[1mInstitutional config options\u001b[0m\n  \u001b[0;34mconfig_profile_name       : \u001b[0;32mTest profile\u001b[0m\n  \u001b[0;34mconfig_profile_description: \u001b[0;32mMinimal test dataset to check pipeline function\u001b[0m\n\n\u001b[1mMax job request options\u001b[0m\n  \u001b[0;34mmax_cpus                  : \u001b[0;32m2\u001b[0m\n  \u001b[0;34mmax_memory                : \u001b[0;32m6.GB\u001b[0m\n  \u001b[0;34mmax_time                  : \u001b[0;32m6.h\u001b[0m\n\n!! Only displaying parameters that differ from the pipeline defaults !!\n-\u001b[2m----------------------------------------------------\u001b[0m-\nIf you use nf-core/demo for your analysis please cite:\n\n* The pipeline\n\n* The nf-core framework\n  https://doi.org/10.1038/s41587-020-0439-x\n\n* Software dependencies\n  https://github.com/nf-core/demo/blob/master/CITATIONS.md\n-\u001b[2m----------------------------------------------------\u001b[0m-\n[1b/808a7b] Submitted process > NFCORE_DEMO:DEMO:SEQTK_TRIM (SAMPLE3_SE)\n[1b/beb379] Submitted process > NFCORE_DEMO:DEMO:FASTQC (SAMPLE3_SE)\n[e0/4f8dcc] Submitted process > NFCORE_DEMO:DEMO:SEQTK_TRIM (SAMPLE2_PE)\n[ab/f831e1] Submitted process > NFCORE_DEMO:DEMO:FASTQC (SAMPLE2_PE)\n[7a/659ed4] Submitted process > NFCORE_DEMO:DEMO:SEQTK_TRIM (SAMPLE1_PE)\n[8e/714f77] Submitted process > NFCORE_DEMO:DEMO:FASTQC (SAMPLE1_PE)\n[b8/4dd6d6] Submitted process > NFCORE_DEMO:DEMO:MULTIQC\n-\u001b[0;35m[nf-core/demo]\u001b[0;32m Pipeline completed successfully\u001b[0m-\n"
+                ],
+                "output": [
+                    [
+                        [
+                            [
+                                "SAMPLE1_PE_1_fastqc.html:md5,f6b9faf88a258fc71026d54063eec464",
+                                "SAMPLE1_PE_2_fastqc.html:md5,305f3c098ff2c5ce5be4129b5b0a4941"
+                            ],
+                            [
+                                "SAMPLE2_PE_1_fastqc.html:md5,e1c42d700367f4941978ab37e07edb07",
+                                "SAMPLE2_PE_2_fastqc.html:md5,3c2c9eb34cda193664da6ae02a6d3597"
+                            ],
+                            [
+                                "SAMPLE3_SE_1_fastqc.html:md5,b9b10450173c55042c2b82472f2be066",
+                                "SAMPLE3_SE_2_fastqc.html:md5,7173195f7b055347c9837a4e1c96b87b"
+                            ]
+                        ],
+                        [
+                            [
+                                "SAMPLE1_PE_sample1_R1.fastq.gz:md5,7dd2fd0d542d9259d9aed53550907fae",
+                                "SAMPLE1_PE_sample1_R2.fastq.gz:md5,1995fe8488384d801807805f26ceca8a"
+                            ],
+                            [
+                                "SAMPLE2_PE_sample2_R1.fastq.gz:md5,05dba9c26396cbdbe0e6da26f037106e",
+                                "SAMPLE2_PE_sample2_R2.fastq.gz:md5,63d5e4ac37927c2ecec4b74d2ff99a10"
+                            ],
+                            [
+                                "SAMPLE3_SE_sample1_R1.fastq.gz:md5,7dd2fd0d542d9259d9aed53550907fae",
+                                "SAMPLE3_SE_sample2_R1.fastq.gz:md5,05dba9c26396cbdbe0e6da26f037106e"
+                            ]
+                        ],
+                        [
+                            [
+                                "fastqc-status-check-heatmap.txt:md5,0f1975c565a16bf09be08a05c204ded7",
+                                "fastqc_overrepresented_sequences_plot.txt:md5,4017241584a8c0782d1988675f3b2249",
+                                "fastqc_per_base_n_content_plot.txt:md5,77c2a38e3662e15a5c143bf5699908ea",
+                                "fastqc_per_base_sequence_quality_plot.txt:md5,6e0365adca6e3555de5e5d66732c4557",
+                                "fastqc_per_sequence_gc_content_plot_Counts.txt:md5,7108d19c46ef7883e864ba274c457d2e",
+                                "fastqc_per_sequence_gc_content_plot_Percentages.txt:md5,bf55e7ab22f41fb210f5feb267ea7e1c",
+                                "fastqc_per_sequence_quality_scores_plot.txt:md5,a0cc0e6df7bfb05257da1cfc88b13c50",
+                                "fastqc_sequence_counts_plot.txt:md5,b73e64278bc07496ddee819e0b5b66e6",
+                                "fastqc_sequence_duplication_levels_plot.txt:md5,3cde2db4033f6c64648976d1174db925",
+                                "fastqc_sequence_length_distribution_plot.txt:md5,7413a9ec5bbc49b9156f0049b32eedc4",
+                                "fastqc_top_overrepresented_sequences_table.txt:md5,dc4d3cdbf0816c0e0a4206f3c6dead2c",
+                                "multiqc.log:md5,011b2534e09c32b7031b12ae8ae6821d",
+                                "multiqc_citations.txt:md5,4c806e63a283ec1b7e78cdae3a923d4f",
+                                "multiqc_data.json:md5,d732f604fa3db34aa8aaa4312fde508b",
+                                "multiqc_general_stats.txt:md5,2dc91cf28c24bc2a3fb82d598b9afe2a",
+                                "multiqc_sources.txt:md5,908387b01d342585429057cdf55458c9"
+                            ],
+                            [
+                                
+                            ],
+                            "multiqc_report.html:md5,7323d69688a4c56db7a6a84d3e79e2ee"
+                        ],
+                        [
+                            "execution_report_2024-07-15_09-31-39.html:md5,d797181483602783a00b208e053a8610",
+                            "execution_timeline_2024-07-15_09-31-39.html:md5,70734c0d132adfb0970d1d737acddd6f",
+                            "execution_trace_2024-07-15_09-31-39.txt:md5,e0ad376ef2631946b7875dd3af46f06d",
+                            "nf_core_pipeline_software_mqc_versions.yml:md5,8cc458504668837d4466232254d951a0",
+                            "params_2024-07-15_09-31-45.json:md5,e98fed0d9c0323ed8dfbb27bed91500d",
+                            "pipeline_dag_2024-07-15_09-31-39.html:md5,b6a1390f448d684834b1157f7fc38e2d"
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.3"
+        },
+        "timestamp": "2024-07-15T09:32:14.419119053"
+    }
+}
