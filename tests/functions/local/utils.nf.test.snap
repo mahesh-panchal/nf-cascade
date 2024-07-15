@@ -1,0 +1,38 @@
+{
+    "Test Function readWithDefault - with file": {
+        "content": [
+            {
+                
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.3"
+        },
+        "timestamp": "2024-07-15T09:50:59.021485066"
+    },
+    "Test Function resolveFileFromDir": {
+        "content": [
+            {
+                
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.3"
+        },
+        "timestamp": "2024-07-15T09:51:10.106910178"
+    },
+    "Test Function readWithDefault - no file": {
+        "content": [
+            {
+                
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.3"
+        },
+        "timestamp": "2024-07-15T09:53:16.773511965"
+    }
+}

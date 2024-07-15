@@ -6,15 +6,15 @@ nextflow_function {
 
 	
 
-    test("Test Function readWithDefault") {
+    test("Test Function readWithDefault - with file") {
 
         function "readWithDefault"
 
         when {
             function {
                 """
-                // define inputs of the function here. Example:
-                // input[0] = 1
+                input[0] = "$projectDir/configs/multiqc.config"
+                input[1] = Channel.value([])
                 """
             }
         }
@@ -26,6 +26,25 @@ nextflow_function {
 
     }
 
+    test("Test Function readWithDefault - no file") {
+
+        function "readWithDefault"
+
+        when {
+            function {
+                """
+                input[0] = ""
+                input[1] = Channel.fromPath("$projectDir/configs/multiqc.config")
+                """
+            }
+        }
+
+        then {
+            assert function.success
+            assert snapshot(function.result).match()
+        }
+
+    }
 	
 
     test("Test Function resolveFileFromDir") {
@@ -35,8 +54,8 @@ nextflow_function {
         when {
             function {
                 """
-                // define inputs of the function here. Example:
-                // input[0] = 1
+                input[0] = 'multiqc.config'
+                input[1] = Channel.fromPath("$projectDir/configs")
                 """
             }
         }
