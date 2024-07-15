@@ -7,7 +7,7 @@ nextflow_process {
     test("Nextflow run nf-core/demo - singularity,test") {
 
         when {
-            params{
+            params {
                 demo {
                     add_config  = "$projectDir/configs/multiqc.config"
                 }
