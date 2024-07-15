@@ -13,11 +13,11 @@ graph TD
     funcscan[[nf-core funcscan]]
 ```
 
-## Description
-
 > [!TIP]
 > If you use code from here please acknowledge it by including a comment
 > in your code with the url to the code you've used/adapted.
+
+## Description
 
 The aim of this repository is to demonstrate one method of integrating multiple
 nextflow workflows together in master workflow. You can then not only integrate existing
