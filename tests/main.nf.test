@@ -1,0 +1,24 @@
+nextflow_pipeline {
+
+    name "Test Workflow main.nf"
+    script "main.nf"
+
+    test("nf-cascade test using nf-core demo") {
+
+        when {
+            params {
+                // define parameters here. Example: 
+                workflows       = 'demo'
+                general.wf_opts = '-resume -ansi-log false'
+                demo.wf_opts    = '-profile docker,test'
+                demo.add_config = 'configs/multiqc.config'
+            }
+        }
+
+        then {
+            assert workflow.success
+        }
+
+    }
+
+}
