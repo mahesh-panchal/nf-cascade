@@ -2,6 +2,17 @@
 
 A proof of concept daisy-chaining Nextflow workflows.
 
+Implemented cascade:
+
+```mermaid
+graph TD
+    demo[[nf-core demo]]
+    fetchngs[[nf-core fetchngs]] --> rnaseq[[nf-core rnaseq]]
+    fetchngs --> taxprofiler[[nf-core taxprofiler]]
+    mag[[nf-core mag]]
+    funcscan[[nf-core funcscan]]
+```
+
 ## Description
 
 > [!TIP]
