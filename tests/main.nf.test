@@ -9,16 +9,19 @@ nextflow_pipeline {
             params {
                 // define parameters here. Example: 
                 workflows       = 'demo'
-                general.wf_opts = '-resume -ansi-log false'
-                demo.wf_opts    = '-profile docker,test'
-                demo.add_config = 'configs/multiqc.config'
+                general {
+                    wf_opts     = '-resume -ansi-log false'
+                }
+                demo {
+                    wf_opts     = '-profile docker,test'
+                    add_config  = "$projectDir/configs/multiqc.config"
+                }
             }
         }
 
         then {
             assert workflow.success
         }
-
     }
 
 }
