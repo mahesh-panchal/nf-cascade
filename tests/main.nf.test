@@ -7,7 +7,6 @@ nextflow_pipeline {
 
         when {
             params {
-                // define parameters here. Example: 
                 workflows       = 'demo'
                 general {
                     wf_opts     = '-resume -ansi-log false'
