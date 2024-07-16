@@ -1,12 +1,15 @@
 /**
- * Returns a channel with the path if it's defined, otherwise returns a default channel.
+ * Returns a channel with each defined element of the map as a Path object.
  * 
- * @param path             The path to include into the channel
+ * @param path             A map of paths where the key is the parameter name, e.g. [ params-file: '/path/to/params.yml' ]
  * @param default_channel  A channel to use as the default if no path is defined.
- * @return                 A channel with a path, or the default channel
+ * @return                 A channel with a Map of Path objects
  */
-def readWithDefault( String path, Object default_channel ) {
-    path ? Channel.fromPath( path, checkIfExists: true ) : default_channel
+def readMapAsFiles( Map<String, String> path_map, Object default_channel ) {
+    default_channel.map { it -> 
+        it + path_map.findAll { key, value -> value }
+            .collectEntries { key, path -> [ (key): file( path , checkIfExists: true ) ] } 
+    }
 }
 
 /**
@@ -16,15 +19,15 @@ def readWithDefault( String path, Object default_channel ) {
  * @param dir   A channel with a directory.
  * @return      A channel with a path relative to the dir path
  */
-def resolveFileFromDir ( String path, Object dir ){
-    dir.map{ results -> file( results.resolve( path ) ) }
+def resolveFileFromDir ( Map<String, String> path_map, Object dir ){
+    dir.map{ results -> path_map.collectEntries { key, value -> [ (key): file( results.resolve( value ), checkIfExists: true ) ] } }
 }
 
 /**
  * Returns a channel with a samplesheet for nf-core/mag. 
  * 
  * @param dir   A channel with a directory. Fastq.gz files are assumed to be in a folder called fastq here.
- * @return      A channel with a samplesheet or empty list
+ * @return      A channel with a samplesheet or an empty map
  */
 def createMagSamplesheet ( Object dir ){
     if ( dir ) {
@@ -36,8 +39,9 @@ def createMagSamplesheet ( Object dir ){
             }
             .flatMap { [ "sample,group,short_reads_1,short_reads_2,long_reads" ] + it }
             .collectFile( name: 'mag_samplesheet.csv', newLine: true, sort: false )
+            .map{ csv -> [ input: csv ] }
     } else {
-        Channel.value([])
+        Channel.value( [:] )
     }
 }
 
@@ -45,7 +49,7 @@ def createMagSamplesheet ( Object dir ){
  * Returns a channel with a samplesheet for nf-core/funcscan. 
  * 
  * @param dir   A channel with a directory. Fa.gz files are assumed to be in a folder called assembly/<assembler>/ here.
- * @return      A channel with a samplesheet or empty list
+ * @return      A channel with a samplesheet or empty map
  */
 def createFuncscanSamplesheet ( Object dir ){
     if ( dir ) {
@@ -57,7 +61,8 @@ def createFuncscanSamplesheet ( Object dir ){
             }
             .flatMap { [ "sample,fasta" ] + it }
             .collectFile( name: 'mag_samplesheet.csv', newLine: true, sort: false )
+            .map{ csv -> [ input: csv ] }
     } else {
-        Channel.value([])
+        Channel.value( [:] )
     }
 }

@@ -2,26 +2,26 @@
 # workflows: 'fetchngs,rnaseq'
 workflows: 'fetchngs,taxprofiler,mag,funcscan'
 general:
-  wf_opts: '-resume -ansi-log false'
+  nxf_opts: '-resume -ansi-log false'
 demo:
-  wf_opts: '-profile docker,test'
+  nxf_opts: '-profile docker,test'
   add_config: 'configs/multiqc.config'
 fetchngs:
   # params_file: 'tests/data/fetchngs_rnaseq_params.yml'
   params_file: 'tests/data/fetchngs_taxprofiler_params.yml'
   input: 'tests/data/fetchngs_taxprofiler_samplesheet.csv'
-  wf_opts: '-profile docker,test -r dev'
+  nxf_opts: '-profile docker,test -r dev'
   add_config: 'configs/multiqc.config'
 rnaseq:
-  wf_opts: '-profile docker,test'
+  nxf_opts: '-profile docker,test'
   add_config: 'configs/multiqc.config'
 taxprofiler:
-  wf_opts: '-profile docker,test'
+  nxf_opts: '-profile docker,test'
   add_config: 'configs/multiqc.config'
 mag:
   params_file: 'tests/data/mag_params.yml'
-  wf_opts: '-profile docker,test'
+  nxf_opts: '-profile docker,test'
   add_config: 'configs/multiqc.config'
 funcscan:
-  wf_opts: '-profile docker,test'
+  nxf_opts: '-profile docker,test'
   add_config: 'configs/multiqc.config'

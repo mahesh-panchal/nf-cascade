@@ -7,24 +7,21 @@ process NEXTFLOW_RUN {
     input:
     val pipeline_name     // String
     val nextflow_opts     // String
-    val params_file       // pipeline params-file
-    val samplesheet       // pipeline samplesheet
-    val additional_config // custom configs
+    val nextflow_files    // Map [ params-file: params.yml , c: configs/multiqc.config ]
+    val pipeline_files    // Map [ input: samplesheet.csv ]
 
     when:
     task.ext.when == null || task.ext.when
 
     exec:
-    // def args = task.ext.args ?: ''
     def cache_dir = Paths.get(workflow.workDir.resolve(pipeline_name).toUri())
     Files.createDirectories(cache_dir)
     def nxf_cmd = [
         'nextflow run',
             pipeline_name,
             nextflow_opts,
-            params_file ? "-params-file $params_file" : '',
-            additional_config ? "-c $additional_config" : '',
-            samplesheet ? "--input $samplesheet" : '',
+            nextflow_files ? nextflow_files.collect{ key, value -> "-$key $value" }.join(' ') : '',
+            pipeline_files ? pipeline_files.collect{ key, value -> "--$key $value" }.join(' ') : '',
             "--outdir $task.workDir/results",
     ]
     def builder = new ProcessBuilder(nxf_cmd.join(" ").tokenize(" "))
