@@ -10,6 +10,7 @@ include { createMagSamplesheet                 } from "$projectDir/functions/loc
 include { createFuncscanSamplesheet            } from "$projectDir/functions/local/utils"
 
 workflow {
+    // Validate possible pipeline chains
     def valid_chains = [
         'demo',
         'fetchngs',
@@ -26,6 +27,13 @@ workflow {
     assert params.workflows in valid_chains
     def wf_chain = params.workflows.tokenize(',')
 
+    // Initialise undefined channels
+    def fetchngs_output_samplesheet = null
+    def fetchngs_output             = null
+    def mag_output                  = null
+
+
+    // Run pipelines
     if ( 'demo' in wf_chain ) {
         NFCORE_DEMO (
             'nf-core/demo',
@@ -79,7 +87,7 @@ workflow {
             readWithDefault( params.mag.input, createMagSamplesheet(fetchngs_output) ), // input
             readWithDefault( params.mag.add_config, Channel.value([]) ),                // custom config
         )
-        mag_output             = NFCORE_MAG.out.output
+        mag_output                  = NFCORE_MAG.out.output
     }
     if ('funcscan' in wf_chain ){
         // FUNCSCAN
