@@ -89,3 +89,10 @@ specific directory (which is also handy for clean up). Native processes also don
 files, and so must be referred to using their uri strings (by using `val` instead of `path` 
 on `Path` types), which makes handling input files easier. Resuming a workflow is then left 
 to the child `nextflow` process.
+
+## Acknowledgements
+
+Special thanks to [James Fellows Yates](https://github.com/jfy133) for finding a small 
+dataset that runs from fetchngs through to funcscan (frankly, the hardest part). And a 
+big thank you to the nf-core and Nextflow community for all their questions and discussions.
+ 
