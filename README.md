@@ -38,12 +38,12 @@ a workflow output, that you can use as an input channel to the next process/work
 
 Run nf-core/demo:
 ```bash
-nextflow run main.nf
+nextflow run main.nf -profile demo[,singularity/docker]
 ```
 
 Run nf-core/fetchngs -> ( nf-core/taxprofiler, nf-core/mag -> nf-core/funcscan ):
 ```bash
-nextflow run main.nf -params-file params.yml
+nextflow run main.nf -profile cascade[,singularity/docker]
 ```
 
 > [!NOTE]
