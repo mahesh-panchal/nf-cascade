@@ -2,6 +2,9 @@
 
 A proof of concept daisy-chaining Nextflow workflows.
 
+A [guided example is on the wiki](https://github.com/mahesh-panchal/nf-cascade/wiki/Guided-Example-%E2%80%90-Nf%E2%80%90core-style-workflow) to use
+this in your own workflow.
+
 Implemented cascade:
 
 ```mermaid
