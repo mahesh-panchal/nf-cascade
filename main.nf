@@ -37,16 +37,17 @@ workflow {
     if ( 'demo' in wf_chain ) {
         NFCORE_DEMO (
             'nf-core/demo',
-            [ 
+            [
                 params.general.wf_opts?: '',
                 params.demo.wf_opts?: '',
             ].join(" ").trim(),                                            // workflow opts
             readWithDefault( params.demo.params_file, Channel.value([]) ), // params file
             readWithDefault( params.demo.input, Channel.value([]) ),       // samplesheet
             readWithDefault( params.demo.add_config, Channel.value([]) ),  // custom config
+            workflow.workDir.resolve('nf-core/demo').toUriString(),
         )
     }
-    if ( 'fetchngs' in wf_chain ){ 
+    if ( 'fetchngs' in wf_chain ){
         // FETCHNGS
         NFCORE_FETCHNGS (
             'nf-core/fetchngs',
@@ -54,10 +55,11 @@ workflow {
             readWithDefault( params.fetchngs.params_file, Channel.value([]) ), // params file
             readWithDefault( params.fetchngs.input, Channel.value([]) ),       // samplesheet
             readWithDefault( params.fetchngs.add_config, Channel.value([]) ),  // custom config
+            workflow.workDir.resolve('nf-core/fetchngs').toUriString(),
         )
         fetchngs_output_samplesheet = getSamplesheet( 'samplesheet/samplesheet.csv', NFCORE_FETCHNGS.out.output )
         fetchngs_output             = NFCORE_FETCHNGS.out.output
-    } 
+    }
     if ('rnaseq' in wf_chain ){
         // RNASEQ
         NFCORE_RNASEQ (
@@ -66,6 +68,7 @@ workflow {
             readWithDefault( params.rnaseq.params_file, Channel.value([]) ),     // params file
             readWithDefault( params.rnaseq.input, fetchngs_output_samplesheet ), // samplesheet
             readWithDefault( params.rnaseq.add_config, Channel.value([]) ),      // custom config
+            workflow.workDir.resolve('nf-core/rnaseq').toUriString(),
         )
     }
     if ('taxprofiler' in wf_chain ){
@@ -76,6 +79,7 @@ workflow {
             readWithDefault( params.taxprofiler.params_file, Channel.value([]) ),     // params file
             readWithDefault( params.taxprofiler.input, fetchngs_output_samplesheet ), // samplesheet
             readWithDefault( params.taxprofiler.add_config, Channel.value([]) ),      // custom config
+            workflow.workDir.resolve('nf-core/taxprofiler').toUriString(),
         )
     }
     if ('mag' in wf_chain ){
@@ -86,6 +90,7 @@ workflow {
             readWithDefault( params.mag.params_file, Channel.value([]) ),               // params file
             readWithDefault( params.mag.input, createMagSamplesheet(fetchngs_output) ), // input
             readWithDefault( params.mag.add_config, Channel.value([]) ),                // custom config
+            workflow.workDir.resolve('nf-core/mag').toUriString(),
         )
         mag_output                  = NFCORE_MAG.out.output
     }
@@ -97,6 +102,7 @@ workflow {
             readWithDefault( params.funcscan.params_file, Channel.value([]) ),               // params file
             readWithDefault( params.funcscan.input, createFuncscanSamplesheet(mag_output) ), // samplesheet
             readWithDefault( params.funcscan.add_config, Channel.value([]) ),                // custom config
+            workflow.workDir.resolve('nf-core/funcscan').toUriString(),
         )
     }
 }

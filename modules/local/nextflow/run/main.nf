@@ -5,6 +5,7 @@ process NEXTFLOW_RUN {
     val params_file       // pipeline params-file
     val samplesheet       // pipeline samplesheet
     val additional_config // custom configs
+    val cache_dir         // cache directory
 
     // directives:
     tag "$pipeline_name"
@@ -14,8 +15,8 @@ process NEXTFLOW_RUN {
 
     exec:
     // def args = task.ext.args ?: ''
-    def cache_dir = java.nio.file.Paths.get(workflow.workDir.resolve(pipeline_name).toUri())
-    java.nio.file.Files.createDirectories(cache_dir)
+    def cache_path = file(cache_dir)
+    assert cache_path.mkdirs()
     // construct nextflow command
     def nxf_cmd = [
         'nextflow run',
@@ -30,11 +31,11 @@ process NEXTFLOW_RUN {
     file("$task.workDir/nf-cmd.sh").text = nxf_cmd.join(" ")
     // Run nextflow command locally
     def builder = new ProcessBuilder(nxf_cmd.join(" ").tokenize(" "))
-    builder.directory(cache_dir.toFile())
+    builder.directory(cache_path.toFile())
     process = builder.start()
     assert process.waitFor() == 0: process.text
     // Copy nextflow log to work directory
-    file("${cache_dir.toString()}/.nextflow.log").copyTo("$task.workDir/.nextflow.log")
+    cache_path.resolve(".nextflow.log").copyTo("$task.workDir/.nextflow.log")
 
     output:
     path "results"  , emit: output
