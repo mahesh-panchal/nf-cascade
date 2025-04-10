@@ -1,0 +1,11 @@
+[workspace]
+authors = ["Mahesh Binzer-Panchal <mahesh.binzer-panchal@nbis.se>"]
+channels = ["conda-forge", "bioconda"]
+name = "nf-cascade"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+nextflow = "24.4.2.*"
