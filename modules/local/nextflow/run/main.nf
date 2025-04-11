@@ -14,10 +14,10 @@ process NEXTFLOW_RUN {
     task.ext.when == null || task.ext.when
 
     exec:
-    // def args = task.ext.args ?: ''
+    // Set cache directory so workflow can `-resume`
     def cache_path = file(cache_dir)
     assert cache_path.mkdirs()
-    // construct nextflow command
+    // Construct nextflow command
     def nxf_cmd = [
         'nextflow run',
             pipeline_name,
@@ -25,19 +25,19 @@ process NEXTFLOW_RUN {
             params_file ? "-params-file $params_file" : '',
             additional_config ? "-c $additional_config" : '',
             samplesheet ? "--input $samplesheet" : '',
-            "--outdir $task.workDir/results",
-    ]
+            "--outdir ${task.workDir}/results",
+    ].join(" ")
     // Copy command to shell script in work dir for reference/debugging.
-    file("$task.workDir/nf-cmd.sh").text = nxf_cmd.join(" ")
-    // Run nextflow command locally
-    def builder = new ProcessBuilder(nxf_cmd.join(" ").tokenize(" "))
-    builder.directory(cache_path.toFile())
-    process = builder.start()
-    assert process.waitFor() == 0: process.text
+    file("$task.workDir/nf-cmd.sh").text = nxf_cmd
+    // Run nextflow command locally in cache directory
+    def process = nxf_cmd.execute(null, cache_path.toFile())
+    process.waitFor()
+    stdout = process.text
+    assert process.exitValue() == 0: stdout
     // Copy nextflow log to work directory
-    cache_path.resolve(".nextflow.log").copyTo("$task.workDir/.nextflow.log")
+    cache_path.resolve(".nextflow.log").copyTo("${task.workDir}/nextflow.log")
 
     output:
-    path "results"  , emit: output
-    val process.text, emit: log
+    path "results" , emit: output
+    val stdout, emit: log
 }
