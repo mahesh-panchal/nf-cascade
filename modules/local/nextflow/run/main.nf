@@ -10,9 +10,6 @@ process NEXTFLOW_RUN {
     // directives:
     tag "$pipeline_name"
 
-    when:
-    task.ext.when == null || task.ext.when
-
     exec:
     // Set cache directory so workflow can `-resume`
     def cache_path = file(cache_dir)
