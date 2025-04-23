@@ -2,10 +2,13 @@
 authors = ["Mahesh Binzer-Panchal <mahesh.binzer-panchal@nbis.se>"]
 channels = ["conda-forge", "bioconda"]
 name = "nf-cascade"
-platforms = ["osx-arm64"]
-version = "0.1.0"
+platforms = ["osx-arm64", "osx-64", "linux-64"]
+version = "1.0"
 
 [tasks]
+demo = "nextflow run main.nf --demo.wf_opts '-profile docker,arm,test'"
+chain = "nextflow run main.nf -params-file nf-cascade-params.yml"
+clean-up = "git clean -fx && rm -rf work results .nextflow"
 
 [dependencies]
-nextflow = "24.4.2.*"
+nextflow = ">=24.10.5,<25"
