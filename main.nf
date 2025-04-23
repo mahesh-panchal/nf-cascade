@@ -1,13 +1,13 @@
-include { NEXTFLOW_RUN as NFCORE_DEMO          } from "$projectDir/modules/local/nextflow/run/main"
-include { NEXTFLOW_RUN as NFCORE_FETCHNGS      } from "$projectDir/modules/local/nextflow/run/main"
-include { NEXTFLOW_RUN as NFCORE_RNASEQ        } from "$projectDir/modules/local/nextflow/run/main"
-include { NEXTFLOW_RUN as NFCORE_TAXPROFILER   } from "$projectDir/modules/local/nextflow/run/main"
-include { NEXTFLOW_RUN as NFCORE_MAG           } from "$projectDir/modules/local/nextflow/run/main"
-include { NEXTFLOW_RUN as NFCORE_FUNCSCAN      } from "$projectDir/modules/local/nextflow/run/main"
-include { readWithDefault                      } from "$projectDir/functions/local/utils"
-include { resolveFileFromDir as getSamplesheet } from "$projectDir/functions/local/utils"
-include { createMagSamplesheet                 } from "$projectDir/functions/local/utils"
-include { createFuncscanSamplesheet            } from "$projectDir/functions/local/utils"
+include { NEXTFLOW_RUN as NFCORE_DEMO          } from "./modules/local/nextflow/run/main"
+include { NEXTFLOW_RUN as NFCORE_FETCHNGS      } from "./modules/local/nextflow/run/main"
+include { NEXTFLOW_RUN as NFCORE_RNASEQ        } from "./modules/local/nextflow/run/main"
+include { NEXTFLOW_RUN as NFCORE_TAXPROFILER   } from "./modules/local/nextflow/run/main"
+include { NEXTFLOW_RUN as NFCORE_MAG           } from "./modules/local/nextflow/run/main"
+include { NEXTFLOW_RUN as NFCORE_FUNCSCAN      } from "./modules/local/nextflow/run/main"
+include { readWithDefault                      } from "./functions/local/utils"
+include { resolveFileFromDir as getSamplesheet } from "./functions/local/utils"
+include { createMagSamplesheet                 } from "./functions/local/utils"
+include { createFuncscanSamplesheet            } from "./functions/local/utils"
 
 workflow {
     // Validate possible pipeline chains
@@ -40,7 +40,7 @@ workflow {
             [
                 params.general.wf_opts?: '',
                 params.demo.wf_opts?: '',
-            ].join(" ").trim(),                                            // workflow opts
+            ].minus("").join(" "),                                         // workflow opts
             readWithDefault( params.demo.params_file, Channel.value([]) ), // params file
             readWithDefault( params.demo.input, Channel.value([]) ),       // samplesheet
             readWithDefault( params.demo.add_config, Channel.value([]) ),  // custom config
