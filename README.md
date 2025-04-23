@@ -41,11 +41,13 @@ a workflow output, that you can use as an input channel to the next process/work
 
 Run nf-core/demo:
 ```bash
-nextflow run main.nf
+# Update nf-core profiles as necessary
+nextflow run main.nf --demo.wf_opts '-profile docker,arm,test'
 ```
 
 Run nf-core/fetchngs -> ( nf-core/taxprofiler, nf-core/mag -> nf-core/funcscan ):
 ```bash
+# Update nf-core profiles within nf-cascade-params.yml as necessary
 nextflow run main.nf -params-file nf-cascade-params.yml
 ```
 
