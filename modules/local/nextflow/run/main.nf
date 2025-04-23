@@ -1,14 +1,14 @@
 process NEXTFLOW_RUN {
-    input:
-    val pipeline_name     // String
-    val nextflow_opts     // String
-    val params_file       // pipeline params-file
-    val samplesheet       // pipeline samplesheet
-    val additional_config // custom configs
-    val cache_dir         // cache directory
-
     // directives:
-    tag "$pipeline_name"
+    tag "${pipeline_name}"
+
+    input:
+    val pipeline_name      // String
+    val nextflow_opts      // String
+    val params_file        // pipeline params-file
+    val samplesheet        // pipeline samplesheet
+    val additional_config  // custom configs
+    val cache_dir
 
     exec:
     // Set cache directory so workflow can `-resume`
@@ -19,13 +19,13 @@ process NEXTFLOW_RUN {
         'nextflow run',
             pipeline_name,
             nextflow_opts,
-            params_file ? "-params-file $params_file" : '',
-            additional_config ? "-c $additional_config" : '',
-            samplesheet ? "--input $samplesheet" : '',
+            params_file ? "-params-file ${params_file}" : '',
+            additional_config ? "-c ${additional_config}" : '',
+            samplesheet ? "--input ${samplesheet}" : '',
             "--outdir ${task.workDir}/results",
     ].join(" ")
     // Copy command to shell script in work dir for reference/debugging.
-    file("$task.workDir/nf-cmd.sh").text = nxf_cmd
+    file("${task.workDir}/nf-cmd.sh").text = nxf_cmd
     // Run nextflow command locally in cache directory
     def process = nxf_cmd.execute(null, cache_path.toFile())
     process.waitFor()
@@ -35,6 +35,6 @@ process NEXTFLOW_RUN {
     cache_path.resolve(".nextflow.log").copyTo("${task.workDir}/nextflow.log")
 
     output:
-    path "results" , emit: output
+    path "results", emit: output
     val stdout, emit: log
 }
