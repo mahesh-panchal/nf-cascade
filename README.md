@@ -93,6 +93,10 @@ files, and so must be referred to using their uri strings (by using `val` instea
 on `Path` types), which makes handling input files easier. Resuming a workflow is then left 
 to the child `nextflow` process.
 
+After discovering the `ProcessBuilder` class caused issues with caching, the module was updated to
+use the `String` function `execute`, which could also take the directory the command was meant to be executed.
+This alleviated the caching issue, allowing successfully executed workflows to remain cached.
+
 ## Acknowledgements
 
 Special thanks to [James Fellows Yates](https://github.com/jfy133) for finding a small 
