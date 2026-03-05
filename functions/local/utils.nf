@@ -5,8 +5,8 @@
  * @param default_channel  A channel to use as the default if no path is defined.
  * @return                 A channel with a path, or the default channel
  */
-def readWithDefault( String path, Object default_channel ) {
-    path ? Channel.fromPath( path, checkIfExists: true ) : default_channel
+def readWithDefault(String path, Object default_channel) {
+    path ? channel.fromPath(path, checkIfExists: true) : default_channel
 }
 
 /**
@@ -16,8 +16,8 @@ def readWithDefault( String path, Object default_channel ) {
  * @param dir   A channel with a directory.
  * @return      A channel with a path relative to the dir path
  */
-def resolveFileFromDir ( String path, Object dir ){
-    dir.map{ results -> file( results.resolve( path ) ) }
+def resolveFileFromDir(String path, Object dir) {
+    dir.map { results -> file(results.resolve(path)) }
 }
 
 /**
@@ -26,18 +26,18 @@ def resolveFileFromDir ( String path, Object dir ){
  * @param dir   A channel with a directory. Fastq.gz files are assumed to be in a folder called fastq here.
  * @return      A channel with a samplesheet or empty list
  */
-def createMagSamplesheet ( Object dir ){
-    if ( dir ) {
-        dir.map { results -> 
-                files( results.resolve( 'fastq/*fastq.gz' ), checkIfExists: true )
-                    .collect {
-                        "${it.simpleName},0,${it},,,ILLUMINA"
-                    }
+def createMagSamplesheet(Object dir) {
+    if (dir) {
+        dir
+            .map { results ->
+                (["sample,group,short_reads_1,short_reads_2,long_reads,short_reads_platform"] + files(results.resolve('fastq/*fastq.gz'), checkIfExists: true).collect { file ->
+                    "${file.simpleName},0,${file},,,ILLUMINA"
+                }).join("\n")
             }
-            .flatMap { [ "sample,group,short_reads_1,short_reads_2,long_reads,short_reads_platform" ] + it }
-            .collectFile( name: 'mag_samplesheet.csv', newLine: true, sort: false )
-    } else {
-        Channel.value([])
+            .collectFile(name: 'mag_samplesheet.csv')
+    }
+    else {
+        channel.value([])
     }
 }
 
@@ -47,17 +47,17 @@ def createMagSamplesheet ( Object dir ){
  * @param dir   A channel with a directory. Fa.gz files are assumed to be in a folder called assembly/<assembler>/ here.
  * @return      A channel with a samplesheet or empty list
  */
-def createFuncscanSamplesheet ( Object dir ){
-    if ( dir ) {
-        dir.map { results -> 
-                files( results.resolve( 'Assembly/MEGAHIT/*.fa.gz' ), checkIfExists: true )
-                    .collect {
-                        "${it.simpleName},${it}"
-                    }
+def createFuncscanSamplesheet(Object dir) {
+    if (dir) {
+        dir
+            .map { results ->
+                (["sample,fasta"] + files(results.resolve('Assembly/MEGAHIT/*.fa.gz'), checkIfExists: true).collect { file ->
+                    "${file.simpleName},${file}"
+                }).join("\n")
             }
-            .flatMap { [ "sample,fasta" ] + it }
-            .collectFile( name: 'funcscan_samplesheet.csv', newLine: true, sort: false )
-    } else {
-        Channel.value([])
+            .collectFile(name: 'funcscan_samplesheet.csv')
+    }
+    else {
+        channel.value([])
     }
 }
