@@ -30,9 +30,9 @@ process NEXTFLOW_RUN {
     def process = nxf_cmd.execute(null, cache_path.toFile())
     process.waitFor()
     stdout = process.text
-    assert process.exitValue() == 0: stdout
     // Copy nextflow log to work directory
     cache_path.resolve(".nextflow.log").copyTo("${task.workDir}/nextflow.log")
+    assert process.exitValue() == 0: stdout
 
     output:
     path "results", emit: output
