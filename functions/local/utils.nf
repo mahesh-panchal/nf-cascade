@@ -31,10 +31,10 @@ def createMagSamplesheet ( Object dir ){
         dir.map { results -> 
                 files( results.resolve( 'fastq/*fastq.gz' ), checkIfExists: true )
                     .collect {
-                        "${it.simpleName},0,${it},,"
+                        "${it.simpleName},0,${it},,,ILLUMINA"
                     }
             }
-            .flatMap { [ "sample,group,short_reads_1,short_reads_2,long_reads" ] + it }
+            .flatMap { [ "sample,group,short_reads_1,short_reads_2,long_reads,short_reads_platform" ] + it }
             .collectFile( name: 'mag_samplesheet.csv', newLine: true, sort: false )
     } else {
         Channel.value([])
