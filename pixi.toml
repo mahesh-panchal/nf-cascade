@@ -3,7 +3,7 @@ authors = ["Mahesh Binzer-Panchal <mahesh.binzer-panchal@nbis.se>"]
 channels = ["conda-forge", "bioconda"]
 name = "nf-cascade"
 platforms = ["osx-arm64", "osx-64", "linux-64", "linux-aarch64"]
-version = "1.0"
+version = "2.0.0"
 
 [tasks]
 demo = "nextflow run main.nf --demo.wf_opts '-profile docker,test'"
