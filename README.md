@@ -76,6 +76,10 @@ Cons:
 > [!WARNING]
 > I have not tested this in a Cloud environment (e.g. AWS, GCP, Azure). It works locally and on a HPC. 
 
+## Technical details
+
+If you're curious about the technical details of how this works, check out the [technical details page](https://github.com/mahesh-panchal/nf-cascade/wiki/Technical-details).
+
 ## Backstory
 
 Being able to chain workflows together has often been requested, in nf-core, and elsewhere.
