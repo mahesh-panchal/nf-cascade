@@ -108,3 +108,4 @@ Special thanks to [James Fellows Yates](https://github.com/jfy133) for finding a
 dataset that runs from fetchngs through to funcscan (frankly, the hardest part). And a
 big thank you to the nf-core and Nextflow community for all their questions and discussions.
 
+Thank you also to Seqera for mentioning nf-cascade in their [Podcast](https://seqera.io/podcasts/episode-56-pipeline-chaining-meta-pipelines-part-1/).
