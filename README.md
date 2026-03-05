@@ -65,7 +65,7 @@ Pros:
 - No messing with code of pipeline you're trying to integrate.
 - Can use existing pipelines as is.
 - Pipelines can be cached and resumed as if they were run independently.
-- Streams the pipeline output to stdout and stderr.
+- Streams the pipeline terminal output to stdout and stderr.
 
 Cons:
 
