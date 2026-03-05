@@ -10,18 +10,18 @@ general:
 fetchngs:
   params_file: 'tests/data/fetchngs_taxprofiler_params.yml'
   input: 'tests/data/fetchngs_taxprofiler_samplesheet.csv'
-  wf_opts: '-profile docker,arm,test -r 1.12.0'
-#   add_config: 'configs/multiqc.config'
+  wf_opts: '-profile docker,test -r 1.12.0'
+  # add_config: 'configs/multiqc.config'
 # rnaseq:
 #   wf_opts: '-profile docker,test -r 3.18.0'
 #   add_config: 'configs/multiqc.config'
 taxprofiler:
-  wf_opts: '-profile docker,arm,test -r 1.1.8'
-#   add_config: 'configs/multiqc.config'
+  wf_opts: '-profile docker,test -r 1.2.6'
+  # add_config: 'configs/multiqc.config'
 mag:
   params_file: 'tests/data/mag_params.yml'
-  wf_opts: '-profile docker,arm,test -r 3.4.0'
-#   add_config: 'configs/multiqc.config'
+  wf_opts: '-profile docker,test -r 5.4.0'
+  # add_config: 'configs/multiqc.config'
 funcscan:
-  wf_opts: '-profile docker,arm,test -r 2.1.0'
-#   add_config: 'configs/multiqc.config'
+  wf_opts: '-profile docker,test -r 3.0.0'
+  # add_config: 'configs/multiqc.config'
