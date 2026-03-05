@@ -28,6 +28,8 @@ process NEXTFLOW_RUN {
     file("${task.workDir}/nf-cmd.sh").text = nxf_cmd
     // Run nextflow command locally in cache directory
     def process = nxf_cmd.execute(null, cache_path.toFile())
+    // Print process output to stdout and stderr
+    process.consumeProcessOutput(System.out, System.err)
     process.waitFor()
     stdout = process.text
     // Copy nextflow log to work directory
