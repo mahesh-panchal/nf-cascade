@@ -42,7 +42,7 @@ a workflow output, that you can use as an input channel to the next process/work
 Run nf-core/demo:
 ```bash
 # Update nf-core profiles as necessary
-nextflow run main.nf --demo.wf_opts '-profile docker,arm,test'
+nextflow run main.nf --demo.wf_opts '-profile docker,test'
 ```
 
 Run nf-core/fetchngs -> ( nf-core/taxprofiler, nf-core/mag -> nf-core/funcscan ):

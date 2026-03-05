@@ -6,7 +6,7 @@ platforms = ["osx-arm64", "osx-64", "linux-64"]
 version = "1.0"
 
 [tasks]
-demo = "nextflow run main.nf --demo.wf_opts '-profile docker,arm,test'"
+demo = "nextflow run main.nf --demo.wf_opts '-profile docker,test'"
 chain = "nextflow run main.nf -params-file nf-cascade-params.yml"
 clean-all = "git clean -e .pixi -fdx"
 
