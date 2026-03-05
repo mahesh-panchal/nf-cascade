@@ -50,13 +50,13 @@ def createMagSamplesheet ( Object dir ){
 def createFuncscanSamplesheet ( Object dir ){
     if ( dir ) {
         dir.map { results -> 
-                files( results.resolve( 'Assembly/*/*fastq.gz' ), checkIfExists: true )
+                files( results.resolve( 'Assembly/MEGAHIT/*.fa.gz' ), checkIfExists: true )
                     .collect {
                         "${it.simpleName},${it}"
                     }
             }
             .flatMap { [ "sample,fasta" ] + it }
-            .collectFile( name: 'mag_samplesheet.csv', newLine: true, sort: false )
+            .collectFile( name: 'funcscan_samplesheet.csv', newLine: true, sort: false )
     } else {
         Channel.value([])
     }
