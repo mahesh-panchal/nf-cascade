@@ -63,11 +63,15 @@ Pros:
 
 - Easy-ish to implement ( copy module, link with channels ).
 - No messing with code of pipeline you're trying to integrate.
+- Can use existing pipelines as is.
+- Pipelines can be cached and resumed as if they were run independently.
+- Streams the pipeline output to stdout and stderr.
 
 Cons:
 
 - If a pipeline fails, you need to wait for any concurrent pipelines to finish.
 - Less control over modules and channels integrated. It's the whole pipeline included ( you maybe able to configure running portions ).
+- May need to use absolute paths for some inputs/outputs.
 
 > [!WARNING]
 > I have not tested this in a Cloud environment (e.g. AWS, GCP, Azure). It works locally and on a HPC. 
