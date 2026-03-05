@@ -1,0 +1,5 @@
+run_amp_screening: false
+run_bgc_screening: false
+arg_skip_deeparg: true
+arg_skip_rgi: true
+arg_skip_fargene: true

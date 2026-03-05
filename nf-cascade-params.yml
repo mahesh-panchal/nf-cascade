@@ -23,5 +23,6 @@ mag:
   wf_opts: '-profile docker,test -r 5.4.0'
   # add_config: 'configs/multiqc.config'
 funcscan:
+  params_file: 'tests/data/funcscan_params.yml'
   wf_opts: '-profile docker,test -r 3.0.0'
-  # add_config: 'configs/multiqc.config'
+  add_config: 'configs/multiqc.config'
