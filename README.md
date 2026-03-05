@@ -69,6 +69,9 @@ Cons:
 - If a pipeline fails, you need to wait for any concurrent pipelines to finish.
 - Less control over modules and channels integrated. It's the whole pipeline included ( you maybe able to configure running portions ).
 
+> [!WARNING]
+> I have not tested this in a Cloud environment (e.g. AWS, GCP, Azure). It works locally and on a HPC. 
+
 ## Backstory
 
 Being able to chain workflows together has often been requested, in nf-core, and elsewhere.
