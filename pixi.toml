@@ -8,7 +8,7 @@ version = "1.0"
 [tasks]
 demo = "nextflow run main.nf --demo.wf_opts '-profile docker,arm,test'"
 chain = "nextflow run main.nf -params-file nf-cascade-params.yml"
-clean-up = "git clean -fx && rm -rf work results .nextflow"
+clean-all = "git clean -e .pixi -fdx"
 
 [dependencies]
 nextflow = ">=25.10.4,<26"
