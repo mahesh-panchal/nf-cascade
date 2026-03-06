@@ -63,9 +63,9 @@ Pros:
 
 - Easy-ish to implement ( copy module, link with channels ).
 - No messing with code of pipeline you're trying to integrate.
-- Can use existing pipelines as is.
 - Pipelines can be cached and resumed as if they were run independently.
 - Streams the pipeline terminal output to stdout and stderr.
+- On successful completion of sub-workflows, the cache is cleaned to remove failed runs.
 
 Cons:
 
