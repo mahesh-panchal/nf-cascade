@@ -1,2 +1,4 @@
 single_end: true
 skip_semibin: true
+skip_gtdbtk: true
+skip_maxbin2: true
