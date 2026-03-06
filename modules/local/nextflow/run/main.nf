@@ -46,6 +46,19 @@ process NEXTFLOW_RUN {
         ============================================================
         """.stripIndent()
 
+    // Clean cache of failed tasks
+    def clean_cmd = ["/usr/bin/env", "bash", "-c", "nextflow clean -f -before last && find work -type d -empty -delete"]
+    def clean_process = clean_cmd.execute(null, cache_path.toFile())
+    // clean_process.consumeProcessOutput(System.out, System.err)
+    clean_process.waitFor()
+    assert clean_process.exitValue() == 0: 
+        """
+        ============================================================
+        CACHE CLEAN FAILED: ${pipeline_name}
+        Exit Code: ${clean_process.exitValue()}
+        ============================================================
+        """.stripIndent()
+
     output:
     path "results", emit: output
 }
