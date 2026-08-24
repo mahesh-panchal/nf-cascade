@@ -2,9 +2,6 @@
 
 A proof of concept daisy-chaining Nextflow workflows.
 
-A [guided example is on the wiki](https://github.com/mahesh-panchal/nf-cascade/wiki/Guided-Example-%E2%80%90-Nf%E2%80%90core-style-workflow) to use
-this in your own workflow.
-
 Implemented cascade:
 
 ```mermaid
@@ -37,6 +34,13 @@ a workflow output, that you can use as an input channel to the next process/work
 > `nf-core launch` to write the pipeline `<pipeline>-params.yml` which can be passed to
 > `<workflow>.params_file`.
 
+## Requirements
+
+Nextflow and a container runtime (`docker`,
+`singularity`/`apptainer`, or `podman`). Sub-workflows are pulled via
+`nextflow run nf-core/<name>` on first run, so a network connection and a
+writable `~/.nextflow` cache are needed.
+
 ## Usage
 
 Run nf-core/demo:
@@ -56,6 +60,14 @@ nextflow run main.nf -params-file nf-cascade-params.yml
 > `<workflow>.input` can be set to supply a samplesheet, or override the samplesheet provided by
 > a previous workflow (`<workflow>.input` and previous workflow stages take precedence over
 > samplesheets provided through `<workflow>.params_file`).
+
+### Adding a pipeline
+
+Look at how a pipeline is `include`d and wired in `main.nf` — e.g. the `NFCORE_MAG`
+block, with its `if (...)` guard, its `createMagSamplesheet(...)` input, and its
+entry in `valid_chains` (`main.nf:14`) — then reproduce the same wiring in your own
+master workflow. For a step by step walkthrough, see the
+[guided example on the wiki](https://github.com/mahesh-panchal/nf-cascade/wiki/Guided-Example-%E2%80%90-Nf%E2%80%90core-style-workflow).
 
 ## Pros and cons
 
