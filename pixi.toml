@@ -11,4 +11,4 @@ chain = "nextflow run main.nf -params-file nf-cascade-params.yml"
 clean-all = "git clean -e .pixi -fdx"
 
 [dependencies]
-nextflow = ">=25.10.4,<26"
+nextflow = ">=26.4.6,<27"
