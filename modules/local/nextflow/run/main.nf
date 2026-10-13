@@ -15,7 +15,7 @@ process NEXTFLOW_RUN {
     def cache_path = file(cache_dir)
     assert cache_path.mkdirs()
 
-    // NXF_* env vars inherited from a Tower/Seqera Platform launch break the nested run - see #6.
+    // NXF_* and TOWER_* env vars inherited from a Tower/Seqera Platform launch break the nested run - see #6, #8.
     // Excluded so the nested run falls back to its own defaults, except shared, namespaced
     // storage locations we still want it to reuse.
     def nxf_passthrough = [
@@ -30,7 +30,7 @@ process NEXTFLOW_RUN {
         'NXF_SPACK_CACHEDIR',
     ]
     def child_env = System.getenv()
-        .findAll { k, v -> !k.startsWith('NXF') || k in nxf_passthrough }
+        .findAll { k, v -> !(k.startsWith('NXF') || k.startsWith('TOWER')) || k in nxf_passthrough }
         .collect { k, v -> "${k}=${v}" }
 
     // Construct nextflow command
